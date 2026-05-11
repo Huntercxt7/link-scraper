@@ -1,18 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Site Viewer</title>
-</head>
-<body>
+import requests
+from bs4 import BeautifulSoup
 
-<h2>Website Viewer</h2>
-
-<iframe 
-src="https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-dotnettools/vsextensions/csharp/1.26.0/vspackage
+url = "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-dotnettools/vsextensions/csharp/1.26.0/vspackage
 "
-width="100%"
-height="800px">
-</iframe>
 
-</body>
-</html>
+response = requests.get(url)
+soup = BeautifulSoup(response.text, "html.parser")
+
+links = []
+
+for a in soup.find_all("a"):
+    href = a.get("href")
+    if href:
+        links.append(href)
+
+with open("links.txt", "w", encoding="utf-8") as f:
+    for link in links:
+        f.write(link + "\n")
+
+print("done")
