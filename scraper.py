@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-url = "https://www.nuget.org/packages/Microsoft.Build/16.6.0"
+url = "Visual Studio 2019 Build Tools 16.0.0.0"
 
 response = requests.get(url)
 soup = BeautifulSoup(response.text, "html.parser")
