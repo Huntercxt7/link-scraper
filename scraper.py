@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-url = "Visual Studio 2019 Build Tools 16.0.0.0"
+url = "https://community.chocolatey.org/packages/visualstudio2019buildtools/16.0.0.0"
 
 response = requests.get(url)
 soup = BeautifulSoup(response.text, "html.parser")
