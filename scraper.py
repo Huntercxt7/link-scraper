@@ -1,8 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-url = "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-dotnettools/vsextensions/csharp/1.26.0/vspackage
-"
+url = "https://www.nuget.org/packages/Microsoft.Build/16.6.0"
 
 response = requests.get(url)
 soup = BeautifulSoup(response.text, "html.parser")
