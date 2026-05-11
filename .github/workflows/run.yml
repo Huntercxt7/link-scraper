@@ -1,0 +1,28 @@
+name: run scraper
+
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: install packages
+        run: pip install -r requirements.txt
+
+      - name: run script
+        run: python scraper.py
+
+      - name: upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: links
+          path: links.txt
