@@ -1,0 +1,28 @@
+name: Download VS BuildTools Bootstrapper
+
+on:
+  workflow_dispatch:
+
+jobs:
+  download:
+    runs-on: windows-latest
+
+    steps:
+      - name: Download vs_BuildTools.exe
+        shell: powershell
+        run: |
+          Invoke-WebRequest `
+            -Uri "https://aka.ms/vs/17/pre/vs_BuildTools.exe" `
+            -OutFile "vs_BuildTools.exe"
+
+      - name: Verify file
+        shell: powershell
+        run: |
+          Get-Item .\vs_BuildTools.exe
+          Get-FileHash .\vs_BuildTools.exe
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: vs_BuildTools
+          path: vs_BuildTools.exe
